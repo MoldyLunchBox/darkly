@@ -1,0 +1,11 @@
+vulnerability URL: http://10.12.100.119/?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c
+after inspecting the image, we see a long text in a comment, we conclude these clues from the comment:
+    1: we must be refered to the url by https://www.nsa.gov/
+    2: we should use ft_bornToSec as the browser
+to achieve this we can use curl with the following params:
+    1: -A "user-agent-name"
+    2: --referer site
+final command : 
+    curl -A "ft_bornToSec"  --referer https://www.nsa.gov/ "http://10.12.100.119/?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c" | grep flag
+
+The flag is : f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188

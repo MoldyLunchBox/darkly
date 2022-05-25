@@ -1,0 +1,9 @@
+-> vulnerability URL: http://10.12.100.119/?page=media&src=nsa
+
+after inspecting we realize the page displays the image using the object tag, knowing the object tag can carry data payload, we can then convert a js to base64, and pass it to the object tag through the url, therefor initiating a
+js injection, which is known as XSS attack
+
+data:text/html;base64,PHNjcmlwdD5hbGVydCgwKTwvc2NyaXB0Pg==
+
+THE FLAG IS : 928D819FC19405AE09921A2B71227BD9ABA106F9D2D37AC412E9E5A750F1506D
+

